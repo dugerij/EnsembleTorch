@@ -3,8 +3,8 @@ import torch
 import torch.nn.functional as F
 from torch.optim import Adam
 
-from .EnsembleModel import emodel
-from .data_laoder import trn_feat_loader, val_feat_loader
+from EnsembleModel import emodel
+from data_laoder import trn_feat_loader, val_feat_loader
 
 optimizer = Adam(emodel.parameters(), lr=0.01)
 
