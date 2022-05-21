@@ -1,9 +1,13 @@
 from tkinter import Variable
 import torch
 import torch.nn as nn
+from torchvision.models.feature_extraction import create_feature_extractor, get_graph_node_names
+
+from utils import train_loader, val_loader
 from models import my_resnet, my_inception, my_densenet
 
 ### For ResNet
+
 
 trn_labels = []
 trn_resnet_features = []
@@ -21,16 +25,17 @@ for d, la in val_loader:
     val_resnet_features.extend(o.cpu().data)
 
 ### For Inception
-
-trn_inception_features = LayerActivations(my_inception.Mixed_7c)
+feature_extractor = create_feature_extractor(
+	my_inception, return_nodes=['Mixed_7c'])
+trn_inception_features = feature_extractor
 for da, la in train_loader:
     _ = my_inception(Variable(da.cuda()))
 
 trn_inception_features.remove()
 
-val_inception_features = LayerActivations(my_inception.Mixed_7c)
+val_inception_features = feature_extractor
 for da, la in val_loader:
-    - = my_inception(Variable(da.cuda()))
+    _ = my_inception(Variable(da.cuda()))
 
 val_inception_features.remove()
 

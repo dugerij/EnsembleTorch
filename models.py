@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torchvision
 from torchvision import models
-from torch.utils.
+
 # create ResNet model
 
 my_resnet = models.resnet34(pretrained=True)
