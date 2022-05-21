@@ -20,6 +20,6 @@ class EnsembleModel(nn.Module):
         out = self.fc4(F.dropout(out, training=self.training))
         return out
 
-em = EnsembleModel(2)
+emodel = EnsembleModel(2)
 if torch.Tensor.is_cuda:
-    em = em.cuda()
+    emodel = emodel.cuda()

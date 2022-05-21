@@ -2,6 +2,9 @@ from tkinter import Variable
 import torch
 import torch.nn.functional as F
 
+from EnsembleModel import emodel
+from data_laoder import trn_feat_loader, val_feat_loader
+
 def fit(epoch, model, data_loader, phase='training', volatile=False):
     if phase == 'training':
         model.train()
@@ -30,3 +33,16 @@ def fit(epoch, model, data_loader, phase='training', volatile=False):
     accuracy = 100. * running_correct / len(data_loader.dataset)
 
     print(f'{phase} loss {loss:{5}.{2}} and {phase} accuracy is {running_correct}/{len(data_loader.dataset)}{accuracy:{10}.{4}}')
+
+
+    train_losses, train_accuracy = [], []
+    val_losses, val_accuracy = [], []
+
+    for epoch in range(1, 10):
+        epoch_loss, epoch_accuracy = fit(epoch, emodel, trn_feat_loader, phase='training')
+        val_epoch_loss, val_epoch_accuracy = fit(epoch, emodel, val_feat_loader, phase='validation')
+
+        train_losses.append(epoch_loss)
+        train_accuracy.append(epoch_accuracy)
+        val_losses.append(val_epoch_loss)
+        val_accuracy.append(val_epoch_accuracy)
