@@ -6,8 +6,8 @@ from torchvision import transforms
 import torch.nn as nn
 
 
-from data_preprocess import trn_densenet_features, trn_inception_features, trn_resnet_features, trn_labels
-from data_preprocess import val_resnet_features, val_inception_features, val_densenet_features, val_labels
+from data_laoder import trn_densenet_features, trn_inception_features, trn_resnet_features, trn_labels
+from data_laoder import val_resnet_features, val_inception_features, val_densenet_features, val_labels
 
 from models import my_resnet, my_inception, my_densenet
 
