@@ -3,8 +3,8 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 
-from .data_preprocess import trn_densenet_features, trn_inception_features, trn_resnet_features, trn_labels
-from .data_preprocess import val_resnet_features, val_inception_features, val_densenet_features, val_labels
+from data_preprocess import trn_densenet_features, trn_inception_features, trn_resnet_features, trn_labels
+from data_preprocess import val_resnet_features, val_inception_features, val_densenet_features, val_labels
 
 data_transform = transforms.Compose([
     transforms.Resize((299, 299)),
