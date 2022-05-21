@@ -1,10 +1,22 @@
 from tkinter import Variable
 import torch
 import torch.nn as nn
-from torchvision.models.feature_extraction import create_feature_extractor, get_graph_node_names
 
-from utils import train_loader, val_loader
-from models import my_resnet, my_inception, my_densenet
+from .data_laoder import train_loader, val_loader
+from .models import my_resnet, my_inception, my_densenet
+
+class LayerActivations():
+    features=[]
+
+    def __init__(self, model) -> None:
+        self.features = []
+        self.hook = model.register_forwward_hook(self.hook_fn)
+
+    def hook_fn(self, module, input, output):
+        self.features.extend(output.view(output.size(0), -1).cpu().data)
+
+    def remove(self):
+        self.hook.remove()
 
 ### For ResNet
 
@@ -25,17 +37,16 @@ for d, la in val_loader:
     val_resnet_features.extend(o.cpu().data)
 
 ### For Inception
-feature_extractor = create_feature_extractor(
-	my_inception, return_nodes=['Mixed_7c'])
-trn_inception_features = feature_extractor
+
+trn_inception_features = LayerActivations(my_inception.Mixed_7c)
 for da, la in train_loader:
     _ = my_inception(Variable(da.cuda()))
 
 trn_inception_features.remove()
 
-val_inception_features = feature_extractor
+val_inception_features = LayerActivations(my_inception.Mixed_7c)
 for da, la in val_loader:
-    _ = my_inception(Variable(da.cuda()))
+    - = my_inception(Variable(da.cuda()))
 
 val_inception_features.remove()
 
