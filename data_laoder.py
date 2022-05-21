@@ -3,8 +3,8 @@ from torchvision.datasets import ImageFolder
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 
-from data_preprocess import trn_densenet_features, trn_inception_features, trn_resnet_features, trn_labels
-from data_preprocess import val_resnet_features, val_inception_features, val_densenet_features, val_labels
+from .data_preprocess import trn_densenet_features, trn_inception_features, trn_resnet_features, trn_labels
+from .data_preprocess import val_resnet_features, val_inception_features, val_densenet_features, val_labels
 
 data_transform = transforms.Compose([
     transforms.Resize((299, 299)),
@@ -16,8 +16,8 @@ data_transform = transforms.Compose([
 train_dset = ImageFolder('dogsandcats/train/', transform=data_transform)
 val_dset = ImageFolder('dogsandcats/valid/', transform=data_transform)
 
-train_loader = DataLoader(train_dset,batch_size=32,shuffle=False,num_workers=3)
-val_loader = DataLoader(val_dset,batch_size=32,shuffle=False,num_workers=3)
+train_loader = DataLoader(train_dset, batch_size=32, shuffle=False, num_workers=3)
+val_loader = DataLoader(val_dset, batch_size=32, shuffle=False, num_workers=3)
 
 
 class FeaturesDataset(Dataset):

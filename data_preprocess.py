@@ -2,8 +2,8 @@ from tkinter import Variable
 import torch
 import torch.nn as nn
 
-from data_laoder import train_loader, val_loader
-from models import my_resnet, my_inception, my_densenet
+from .data_laoder import train_loader, val_loader
+from .models import my_resnet, my_inception, my_densenet
 
 class LayerActivations():
     features=[]
