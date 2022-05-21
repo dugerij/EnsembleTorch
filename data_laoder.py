@@ -17,7 +17,7 @@ train_dset = ImageFolder('dogsandcats/train/', transform=data_transform)
 val_dset = ImageFolder('dogsandcats/valid/', transform=data_transform)
 
 train_loader = DataLoader(train_dset,batch_size=32,shuffle=False,num_workers=3)
-val_loader = DataLoader(val_dset,batch_size=32,shuffle=False,num_workers=3)”
+val_loader = DataLoader(val_dset,batch_size=32,shuffle=False,num_workers=3)
 
 
 class FeaturesDataset(Dataset):

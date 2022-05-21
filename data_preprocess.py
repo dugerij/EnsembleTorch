@@ -46,7 +46,7 @@ trn_inception_features.remove()
 
 val_inception_features = LayerActivations(my_inception.Mixed_7c)
 for da, la in val_loader:
-    - = my_inception(Variable(da.cuda()))
+    _ = my_inception(Variable(da.cuda()))
 
 val_inception_features.remove()
 
