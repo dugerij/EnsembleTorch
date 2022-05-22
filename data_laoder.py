@@ -13,7 +13,7 @@ data_transform = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 ])
 
-# for dogs and cat dataset
+# for dogs and cat dataset(dataset currently fails to load)
 train_dset = ImageFolder('dogsandcats/train/', transform=data_transform)
 val_dset = ImageFolder('dogsandcats/valid/', transform=data_transform)
 
